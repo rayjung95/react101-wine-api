@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-export class LikeButton extends Component {
 
-  static propTypes = {
-    startCounterAt: PropTypes.number
-  };
+export default class LikeButton extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+        count: 0
+    }
+}
+
 
 
 }

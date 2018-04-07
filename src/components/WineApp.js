@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Regions from './Regions'
 import WineList from './WineList'
 import Wine from './Wine'
+import Counter from './Counter'
+import { comment } from 'postcss';
 
 export default class WineApp extends Component {
   constructor(props){
@@ -25,10 +27,16 @@ export default class WineApp extends Component {
               "Cabernet Franc"
             ]
         },
+        isWineLiked:null,
+        comments:[]
       }
+      this.likeWine = this.likeWine.bind(this);
+      this.unlikeWine = this.unlikeWine.bind(this);
+      this.isWineLiked = this.isWineLiked.bind(this);
       this.fetchRegions = this.fetchRegions.bind(this);
       this.fetchWinesFrom = this.fetchWinesFrom.bind(this);
       this.fetchWine = this.fetchWine.bind(this);
+      this.fetchComments = this.fetchComments.bind(this);
       this.onSelectRegion = this.onSelectRegion.bind(this);
       this.onSelectWine = this.onSelectWine.bind(this);
   }
@@ -59,6 +67,9 @@ export default class WineApp extends Component {
     })
     .then((wines)=>{
       if(wines[0]){
+        this.isWineLiked(wines[0].id)
+        this.fetchComments(wines[0].id)
+        console.log(wines[0].id)
         this.setState({
           wines,
           selectedWineID:wines[0].id
@@ -79,12 +90,63 @@ export default class WineApp extends Component {
     return fetch(`https://wines-api.herokuapp.com/api/wines/${id}`)
     .then((r) => {return r.json()})
     .then((wine)=>{
+      this.fetchComments(id)
       this.setState({
         selectedWine:wine,
         selectedWineID:wine.id
       })
     })
   }
+
+  fetchComments(id) {
+    return fetch(`https://wines-api.herokuapp.com/api/wines/${id}/comments`)
+    .then((r)=>{return r.json()})
+    .then((comments)=>{
+      console.log(comments)
+      this.setState({
+        comments
+      })
+    })
+  }
+
+  likeWine(id) {
+    return fetch(`https://wines-api.herokuapp.com/api/wines/${id}/like`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ like: true })
+    })
+    .then(this.setState({
+      isWineLiked:true
+    }))
+
+  }
+
+  unlikeWine(id) {
+    return fetch(`https://wines-api.herokuapp.com/api/wines/${id}/like`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ like: false })
+    }).then(this.setState({
+      isWineLiked:false
+    }))
+  }
+  
+  isWineLiked(id) {
+    return fetch(`https://wines-api.herokuapp.com/api/wines/${id}/like`)
+    .then((r) => {return r.json()})
+    .then((isWineLiked)=>{
+      this.setState({
+        isWineLiked:isWineLiked.like
+      })
+    })
+  }
+
 
   onSelectRegion = (region) => {
     this.fetchWinesFrom(region)
@@ -99,6 +161,8 @@ export default class WineApp extends Component {
   onSelectWine = (id) => {
     // load wine details from wine id
     this.fetchWine(id)
+    this.isWineLiked(id)
+    this.fetchComments(id)
   };
 
 
@@ -129,10 +193,15 @@ export default class WineApp extends Component {
           <Wine
             wine={this.state.selectedWine}
             wineID={this.state.selectedWineID}
+            isWineLiked={this.state.isWineLiked}
+            likeWine={this.likeWine}
+            unlikeWine={this.unlikeWine}
+            comments={this.state.comments}
           />
           }
           
         </div>
+        <Counter/>
       </div>
     );
   }

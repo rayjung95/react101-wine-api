@@ -11,7 +11,6 @@ export default class Regions extends Component {
   };
 
   render () {
-    console.log("im in regions")
     return (
       <div className="col s12 m6 l3">
         <h1 className="center-align">Regions</h1>
