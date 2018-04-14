@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Regions from './Regions'
 import WineList from './WineList'
 import Wine from './Wine'
-import Counter from './Counter'
 import { comment } from 'postcss';
 
 export default class WineApp extends Component {
@@ -43,7 +42,7 @@ export default class WineApp extends Component {
   
 
   componentDidMount() {
-    console.log("didmoutn")
+    console.log("didmount")
     // load regions and maybe wines from the first region
     this.fetchRegions()
   }
@@ -60,6 +59,7 @@ export default class WineApp extends Component {
     });
   }
 
+
   fetchWinesFrom(region) {
     return fetch(`https://wines-api.herokuapp.com/api/wines?region=${region}`)
     .then((r) => {
@@ -70,6 +70,7 @@ export default class WineApp extends Component {
         this.isWineLiked(wines[0].id)
         this.fetchComments(wines[0].id)
         console.log(wines[0].id)
+        this.state.wines=wines
         this.setState({
           wines,
           selectedWineID:wines[0].id
@@ -201,9 +202,11 @@ export default class WineApp extends Component {
           }
           
         </div>
-        <Counter/>
       </div>
     );
   }
 }
+
+
+
 

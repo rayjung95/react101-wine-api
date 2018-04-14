@@ -32,8 +32,6 @@ export default class Wine extends Component {
                             />
                         )
                     })}
-                    
-                    
                     <div className="card-action">
                         <a className="waves-effect waves-teal btn-flat" onClick={this.props.isWineLiked? e=>this.props.unlikeWine(this.props.wine.id): e=>this.props.likeWine(this.props.wine.id)}>
                             {this.props.isWineLiked?<span> Like <i className="material-icons left">thumb_up</i></span>:<span> UnLike <i className="material-icons left">thumb_down</i></span> } 

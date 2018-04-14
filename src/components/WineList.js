@@ -14,7 +14,7 @@ export default class WineList extends Component {
             {
               this.props.wines.map( (wine,i) =>{
                 return(
-                  <a href="#" className={this.props.wineID===wine.id? "collection-item active": "collection-item" } key={wine.id} onClick={e => this.onSelectWine(wine.id)} >
+                  <a href="#" className={this.props.wineID===wine.id? "collection-item active": "collection-item" } key={wine.id} onClick={this.onSelectWine(wine.id)} >
                     {wine.name}
                   </a>
                 )

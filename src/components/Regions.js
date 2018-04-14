@@ -18,7 +18,7 @@ export default class Regions extends Component {
           {
             this.props.regions.map((region, i) =>{
               return(
-                <a href="#" className={this.props.region===region? "collection-item active": "collection-item" } key={region} onClick={e => this.onSelectRegion(region)}>
+                <a href="#" className={this.props.region===region? "collection-item active": "collection-item" } key={region} onClick={this.onSelectRegion(region)}>
                   {region}
                 </a>
               )}
