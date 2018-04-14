@@ -1,29 +1,33 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-export default class WineList extends Component {
-  
-  onSelectWine = (id) => {
-    this.props.onSelectWine(id);
+export class WineList extends Component {
+  onSelectWine = (e, wineId) => {
+    e.preventDefault();
+    this.props.onSelectWine(wineId);
   };
-  
-  render(){
-      return(
-        <div className="col s12 m6 l3">
-          <h1 className="center-align">Wines</h1>
-            <div className="collection">
-            {
-              this.props.wines.map( (wine,i) =>{
-                return(
-                  <a href="#" className={this.props.wineID===wine.id? "collection-item active": "collection-item" } key={wine.id} onClick={this.onSelectWine(wine.id)} >
-                    {wine.name}
-                  </a>
-                )
-              }
-                
-              )
-            }
-            </div>
+
+  render() {
+    if (this.props.region === null) {
+      return null;
+    }
+    return (
+      <div className="col s12 m6 l3">
+        <h2 className="center-align">Wines</h2>
+        <div className="collection">
+          {this.props.wines.map(wine => (
+            <a
+              key={wine.id}
+              href="#!"
+              onClick={e => this.onSelectWine(e, wine.id)}
+              className={[
+                'collection-item',
+                this.props.wine && wine.id === this.props.wine.id ? 'active' : '',
+              ].join(' ')}>
+              {wine.name}
+            </a>
+          ))}
         </div>
-      )
+      </div>
+    );
   }
-};
+}

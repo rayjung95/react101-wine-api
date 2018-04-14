@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 
-export default class Regions extends Component {
-  constructor(props){
-    super(props);
-    this.onSelectRegion = this.onSelectRegion.bind(this)
-  }
-
-  onSelectRegion = (region) => {
+export class Regions extends Component {
+  onSelectRegion = (e, region) => {
+    e.preventDefault();
     this.props.onSelectRegion(region);
   };
 
-  render () {
+  render() {
     return (
       <div className="col s12 m6 l3">
-        <h1 className="center-align">Regions</h1>
+        <h2 className="center-align">Regions</h2>
         <div className="collection">
-          {
-            this.props.regions.map((region, i) =>{
-              return(
-                <a href="#" className={this.props.region===region? "collection-item active": "collection-item" } key={region} onClick={this.onSelectRegion(region)}>
-                  {region}
-                </a>
-              )}
-            )
-          }
+          {this.props.regions.map(region => (
+            <a
+              key={region}
+              href="#!"
+              onClick={e => this.onSelectRegion(e, region)}
+              className={['collection-item', region === this.props.region ? 'active' : ''].join(
+                ' '
+              )}>
+              {region}
+            </a>
+          ))}
         </div>
       </div>
-    )
+    );
   }
 }

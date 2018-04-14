@@ -1,14 +1,17 @@
-# React 101
+# React 102
 
-React 101 is a workshop for those that want to learn React.js and its ecosystem, step by step.
+React 102 is a workshop for those that want to learn React.js and its ecosystem, step by step.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
-<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">react-101</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/react-bootcamp/react-101" property="cc:attributionName" rel="cc:attributionURL">Mathieu ANCELIN and Sébastien PRUNIER</a> is distributed under the terms of the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Attribution - NonCommercial - ShareAlike</a>.
+<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">react-102</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/react-bootcamp/react-102" property="cc:attributionName" rel="cc:attributionURL">Mathieu ANCELIN and Sébastien PRUNIER</a> is distributed under the terms of the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Attribution - NonCommercial - ShareAlike</a>.
 
-## The "Open Wine Database" app
+## The Single Page Application version of the "Open Wine Database" app with React Router
 
 During the workshop you will create a webapp to manage your favorite wines* !
+
+The source code is based on the previous version of the app described in [react-101](https://github.com/react-bootcamp/react-101).
+
 The main features of the app are
 
 * List the wines by regions
@@ -18,10 +21,11 @@ The main features of the app are
 
 \* *Alcohol abuse is dangerous for health, consume with moderation ;-)*
 
-You can try the app [here](http://bit.ly/rbw-101)
+In this version, the app will be a *Single Page Application* based on [React Router](https://github.com/ReactTraining/react-router).
 
-<img
-src='https://github.com/react-bootcamp/react-101/raw/master/instructions/img/wine-app.png' width='800' alt='The Wine App'>
+You can try the app [here](http://bit.ly/rbw-102)
+
+<img src='https://github.com/react-bootcamp/react-102/raw/master/instructions/img/spa.gif' height='500' alt='The SPA Wine App'>
 
 ## Technical requirements
 
@@ -90,22 +94,20 @@ In order to have specific tools to react in your web browser, install **React De
 
 ## Install dependencies
 
-If you want to pre-install the dependencies of the project to avoid any network issue, first clone the `react-101` repo then run the `npm install` command
+If you want to pre-install the dependencies of the project to avoid any network issue, first clone the `react-102` repo then run the `npm install` command
 
 ```sh
-git clone https://github.com/react-bootcamp/react-101 react-101
-cd react-101
+git clone https://github.com/react-bootcamp/react-102 react-102
+cd react-102
 npm install
-npm install -g create-react-app
 ```
 
 or if you want to use `yarn` instead run
 
 ```sh
-git clone https://github.com/react-bootcamp/react-101 react-101
-cd react-101
+git clone https://github.com/react-bootcamp/react-102 react-102
+cd react-102
 yarn install
-yarn global add create-react-app
 ```
 
 ### Open Wine API
@@ -125,17 +127,11 @@ yarn start
 
 Then go to [http://localhost:3000](http://localhost:3000) to explore the documentation of the different routes available.
 
-### Common React Patterns
-
-We provide a list of commen React pattern to help you during your journey through React [here](./instructions/patterns.md)
 
 ### Steps
 
-* [Step 0 : create the app](./instructions/0-create-the-app.md)
-* [Step 1 : write your first React component](./instructions/1-your-first-component.md)
-* [Step 2 : write a first static version of the Open Wine Database app](./instructions/2-the-wine-app.md)
-* [Step 3 : use the Open Wine API to feed the app](./instructions/3-connect-with-the-wine-api.md)
-* [Step 4 : add support for likes](./instructions/4-handle-likes.md)
-* [Step 5 : add support for comments](./instructions/5-handle-comments.md)
-* [Step 6 : integrates a third party JS library](./instructions/6-integrate-with-third-party-apis.md)
-# react101-wine-api
+* [Step 0 : client-side routing](./instructions/0-client-side-routing.md)
+* [Step 1 : react-router](./instructions/1-react-router.md)
+* [Step 2 : regions page](./instructions/2-regions-page.md)
+* [Step 3 : wine list page](./instructions/3-wine-list-page.md)
+* [Step 4 : wine details page](./instructions/4-wine-details-page.md)
